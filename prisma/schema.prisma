@@ -1,0 +1,22 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Student {
+  id        Int      @id @default(autoincrement())
+  studentNo String   @unique @db.VarChar(30)
+  firstName String   @db.VarChar(80)
+  lastName  String   @db.VarChar(80)
+  email     String   @unique @db.VarChar(150)
+  course    String   @db.VarChar(100)
+  yearLevel Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([lastName, firstName])
+}
