@@ -15,7 +15,7 @@ function validateStudent(body) {
   const course = String(body.course || "").trim();
   const yearLevel = Number(body.yearLevel);
   if (!studentNo || !firstName || !lastName || !email || !course) return { error: "Please complete all required fields." };
-  if (!/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(email)) return { error: "Please enter a valid email address." };
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return { error: "Please enter a valid email address." };
   if (!Number.isInteger(yearLevel) || yearLevel < 1 || yearLevel > 6) return { error: "Year level must be a whole number from 1 to 6." };
   return { data: { studentNo, firstName, lastName, email, course, yearLevel } };
 }
